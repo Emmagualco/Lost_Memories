@@ -7,11 +7,12 @@ namespace EG
     {
         private Animator animator;
         private CharacterController controller;
-        private GameObject camara;
+        private new GameObject camera;
         public Rigidbody rb;
 
         [Header("Stats")]
         [SerializeField] private float speed = 3f;
+        float movementSpeed = 0;
         [SerializeField] private float runSpeed = 10f;
         [SerializeField] private float jumpForce = 8f;
         [SerializeField] private float spinTime = 0.1f;
@@ -24,13 +25,16 @@ namespace EG
         public float horizontal = 0.0f;
         public float vertical = 0.0f;
         float gravity = -9.81f;
-        Vector3 velocity;
+        Vector3 velocity = Vector3.zero;
         bool touchFloor;
         public bool canJump;
         public bool attack = false;
         public bool die = false;
         public bool dead = false;
         public bool superattack = false;
+        private float rSpeed = 3.0f;
+        private float X = 0.0f;
+        private float Y = 0.0f;
 
         // Start is called before the first frame update
         void Start()
@@ -38,11 +42,12 @@ namespace EG
             canJump = false;
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-            camara = GameObject.FindGameObjectWithTag("MainCamera");
+            camera = GameObject.FindGameObjectWithTag("MainCamera");
         }
         private void FixedUpdate()
         {
             Movement();
+            controller.Move(velocity);
 
         }
         // Update is called once per frame
@@ -63,7 +68,6 @@ namespace EG
         void Movement()
         {
 
-
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
 
@@ -72,7 +76,7 @@ namespace EG
             Vector3 direccion = new Vector3(horizontal, 0, vertical).normalized;
             if (direccion.magnitude >= 0.1f)
             {
-                float objetivoAngulo = Mathf.Atan2(direccion.x, direccion.z) * Mathf.Rad2Deg + camara.transform.eulerAngles.y;
+                float objetivoAngulo = Mathf.Atan2(direccion.x, direccion.z) * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
                 float angulo = Mathf.SmoothDampAngle(transform.eulerAngles.y, objetivoAngulo, ref speedSpin, spinTime);
                 transform.rotation = Quaternion.Euler(0, angulo, 0);
 
