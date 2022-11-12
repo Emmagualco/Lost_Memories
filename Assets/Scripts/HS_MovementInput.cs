@@ -289,8 +289,8 @@ public class HS_MovementInput : MonoBehaviour
     {
         yield return new WaitForSeconds(enableTime);
         canUlt = true;
-        //Enable Ult icon
-        //ultIcons[EffectNumber].SetActive(true);
+        
+        ultIcons[EffectNumber].SetActive(true);
         while (true)
         {
             dissableTime -= Time.deltaTime;
@@ -776,6 +776,29 @@ public class HS_MovementInput : MonoBehaviour
         else if (Speed < allowPlayerRotation)
         {
             anim.SetFloat("InputMagnitude", Speed, StopAnimTime, Time.deltaTime);
+
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (Speed > allowPlayerRotation)
+            {
+                anim.SetFloat("InputMagnitude", Speed*5, StartAnimTime, Time.deltaTime);
+                PlayerMoveAndRotation();
+            }
+            else if (Speed < allowPlayerRotation)
+            {
+                anim.SetFloat("InputMagnitude", Speed*5, StopAnimTime, Time.deltaTime);
+
+            }
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+           
+            anim.SetBool("Jump", true);
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            velocity.y = Mathf.Sqrt(jumpForce * -2 * gravity);
+
+           
         }
     }
     public int targetIndex()

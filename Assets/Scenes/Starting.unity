@@ -3379,9 +3379,9 @@ MonoBehaviour:
   allowPlayerRotation: 0.1
   cam: {fileID: 963194227}
   controller: {fileID: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 14520450}
   isGrounded: 1
-  canJump: 0
+  canJump: 1
   speed: 3
   runSpeed: 10
   jumpForce: 0.1
@@ -10300,8 +10300,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402889977}
-  m_LocalRotation: {x: -0.22513181, y: -0, z: -0, w: 0.97432834}
-  m_LocalPosition: {x: 213.76, y: -27.670998, z: 218.77}
+  m_LocalRotation: {x: -0.08818366, y: -0.013615321, z: -0.0012861997, w: 0.99601036}
+  m_LocalPosition: {x: 501.90637, y: -285.7284, z: -877.7433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
