@@ -97,9 +97,9 @@ namespace EG
             controller = this.GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             camera = GameObject.FindGameObjectWithTag("MainCamera");
-            if (Prefabs[0].GetComponent<AudioSource>())
+            if (Prefabs[8].GetComponent<AudioSource>())
             {
-                soundComponent = Prefabs[0].GetComponent<AudioSource>();
+                soundComponent = Prefabs[8].GetComponent<AudioSource>();
             }
         }
         private void FixedUpdate()
@@ -114,6 +114,7 @@ namespace EG
             ////target = screenTargets[targetIndex()];
             DamageManage();
             Casting();
+            Movement();
         }
 
         void Falling()
@@ -211,6 +212,7 @@ namespace EG
                     StartCoroutine(cameraShaker.Shake(0.1f, 2, 0.2f, 0));
                     fireCountdown = 0;
                     fireCountdown += fireRate;
+                    Debug.Log("disparo");
                 }
             }
             else
@@ -249,7 +251,7 @@ namespace EG
             //Need second layer in the Animator
             if (animator.layerCount > 1) { animator.SetLayerWeight(1, secondLayerWeight); }
 
-            Movement();
+            
 
             //If you don't need the character grounded then get rid of this part.
             isGrounded = controller.isGrounded;
